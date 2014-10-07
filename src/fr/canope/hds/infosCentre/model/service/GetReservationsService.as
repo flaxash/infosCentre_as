@@ -11,14 +11,16 @@ package fr.canope.hds.infosCentre.model.service
 		private var reservationsDuJour:Array; 
 		
 		public var signalServiceReady:Signal  = new Signal(Array);
+		
 		public function GetReservationsService()
 		{
 			myService = new GetXmlService();
 			myService.signalXml.add(onXmlLoaded);
-			myService.load();
+			
 		}
 		public function getReservations():void {
-			signalServiceReady.dispatch(reservationsDuJour);
+			myService.load();
+			
 		}
 		private function onXmlLoaded(myXML:XML):void 
 		{
@@ -36,7 +38,7 @@ package fr.canope.hds.infosCentre.model.service
 				reservationsDuJour.push(tempResa);
 			}
 			trace ("il y a " + reservationsDuJour.length + " reservations aujourd'hui");
-			
+			signalServiceReady.dispatch(reservationsDuJour);
 		}
 		
 	}

@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <flexLibProperties includeAllClasses="true" useMultiPlatformConfig="false" version="3">
-  <includeClasses/>
+  <includeClasses>
+    <classEntry path="fr.canope.hds.infosCentre.view.BlocHoraireMC"/>
+    <classEntry path="fr.canope.hds.infosCentre.view.TweetsMC"/>
+    <classEntry path="fr.canope.hds.infosCentre.view.MessageMC"/>
+    <classEntry path="fr.canope.hds.infosCentre.view.FondMC"/>
+    <classEntry path="fr.canope.hds.infosCentre.view.ActualitesMC"/>
+  </includeClasses>
   <includeResources/>
   <namespaceManifests/>
 </flexLibProperties>
