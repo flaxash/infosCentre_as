@@ -17,6 +17,8 @@
 		private var arrayReservations:Array = new Array();
 		private var position_y:Number = 0;
 		
+		private var bloc:BlocHoraireMC;
+		
 		
 		public function SalleMC()
 		{
@@ -33,6 +35,21 @@
 			monBloc.y = cible_mc.y + position_y;
 			this.addChild(monBloc);
 			position_y += 150;
+		}
+		
+		public function effaceReservations ():void {
+			//todo 
+			position_y =0;
+			for (var i:int = this.numChildren-1; i>-1; i--)
+			{
+				//trace ("dans salle :"+typeof(this.getChildAt(i)));
+				if (this.getChildAt(i) is BlocHoraireMC) 
+				{
+						removeChild(this.getChildAt(i));
+				}
+				
+			}
+			
 		}
 		
 		

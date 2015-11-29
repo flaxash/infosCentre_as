@@ -1,10 +1,12 @@
-package fr.canope.hds.infosCentre.view
+﻿package fr.canope.hds.infosCentre.view
 {
 	import com.greensock.TweenLite;
 	import com.greensock.events.LoaderEvent;
 	import com.greensock.loading.ImageLoader;
 	import com.greensock.loading.LoaderMax;
 	import com.greensock.loading.XMLLoader;
+	
+	import com.adobe.utils.ArrayUtil;
 	
 	import flash.display.DisplayObject;
 	import flash.display.MovieClip;
@@ -17,25 +19,37 @@ package fr.canope.hds.infosCentre.view
 		private var queueImages:LoaderMax;
 		
 		private var timerImages:Timer;
+		private var timerXML:Timer;		
 		
 		private var imageAffichee:uint;
 		private var nbImages:uint;
 		
 		private var mesLiensImages:Array;
+		private var arrayUtil:ArrayUtil;
 		
 		public function ActualitesMC()
 		{
 			super();
-			monLoader.load();
+			setTimerXML();
 			mesLiensImages = new Array();
+			monLoader.load();
 		}
+		
 		private function xmlLoaded (event:LoaderEvent):void {
-			//trace(monLoader.content.actualite.@image);
-			for each (var monXml:XML in monLoader.content.actualite) {
-				mesLiensImages.push(String(monXml.@image))
+			trace(monLoader.content.actualite.@image);
+			var newLiensImages:Array=new Array();
+			{
+				for each (var monXml:XML in monLoader.content.actualite) {
+					if (monXml.@image) { newLiensImages.push(String(monXml.@image)) }
+				}
 			}
-			trace(mesLiensImages);
-			loadImages();
+			trace(newLiensImages);
+			//vérifie que les images ne sont pas déjà là
+			if (!arraysAreEqual(mesLiensImages,newLiensImages)) {
+					mesLiensImages=newLiensImages;
+					loadImages();
+			} 
+			
 		}
 		private function loadImages():void {
 			queueImages = new LoaderMax({onComplete:completeHandler});
@@ -57,6 +71,12 @@ package fr.canope.hds.infosCentre.view
 			timerImages.addEventListener(TimerEvent.TIMER,onTick);
 			timerImages.start();
 		}
+		private function setTimerXML():void {
+			// 5mn = 300 000 ms
+			timerXML = new Timer(300000);
+			timerXML.addEventListener(TimerEvent.TIMER,onTickXML);
+			timerXML.start();
+		}
 		private function onTick(te:TimerEvent):void {
 			trace("tick");
 			for (var i:uint=0;i<nbImages;i++) {
@@ -70,6 +90,28 @@ package fr.canope.hds.infosCentre.view
 			}
 			imageAffichee++;
 			imageAffichee = imageAffichee%nbImages;
+		}
+		private function onTickXML(te:TimerEvent):void {
+			monLoader.load();
+		}
+		private function arraysAreEqual(arr1:Array, arr2:Array):Boolean
+		{
+			if(arr1.length != arr2.length)
+			{
+				return false;
+			}
+			
+			var len:Number = arr1.length;
+			
+			for(var i:Number = 0; i < len; i++)
+			{
+				if(arr1[i] !== arr2[i])
+				{
+					return false;
+				}
+			}
+			
+			return true;
 		}
 	}
 }

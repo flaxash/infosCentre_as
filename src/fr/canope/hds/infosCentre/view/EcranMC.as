@@ -34,7 +34,7 @@
 		}
 		private function afficheSalles():void {
 			var maSalle:SalleMC;
-			for (var i:uint;i<listeSalles.length;i++) {
+			for (var i:uint=0;i<listeSalles.length;i++) {
 				maSalle = SalleMC(listeSalles[i]);
 				//trace (maSalle);
 				maSalle.nomSalleTxt.text = nomsSalles[i];
@@ -44,7 +44,8 @@
 		public function placeCreneau(resa:Reservation):void {
 			var salleCible:SalleMC;
 			
-			switch (resa.salle) {
+			switch (resa.salle) 
+			{
 				case 3 :
 					//cirrus
 					salleCible = salle1_mc;
@@ -63,9 +64,22 @@
 					break;
 				default :
 					//on ne fait rien
+					salleCible = null;
 					break;
 			}
-			salleCible.afficheReservation(resa);
+			if (salleCible) {
+				salleCible.afficheReservation(resa);
+			}
+		}
+		public function effaceTout():void 
+		{
+			var maSalle:SalleMC;
+			for (var i:uint=0;i<listeSalles.length;i++) {
+				maSalle = SalleMC(listeSalles[i]);
+				//trace (maSalle);
+				maSalle.effaceReservations();
+				trace ("données effacées pour salle : " + maSalle.name);
+			}
 		}
 		
 	}
