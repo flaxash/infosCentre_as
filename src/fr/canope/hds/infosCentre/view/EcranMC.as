@@ -13,11 +13,13 @@
 		public var salle2_mc:SalleMC;
 		public var salle3_mc:SalleMC;
 		public var salle4_mc:SalleMC;
+		public var salle5_mc:SalleMC;
+		public var salle6_mc:SalleMC;
 		
 		public var actualites_mc:ActualitesMC;
 		public var message_mc:MessageMC;
 		
-		public var nomsSalles:Array = new Array("CIRRUS", "CUMULUS", "STRATUS", "OZONE");
+		public var nomsSalles:Array = new Array("CIRRUS", "CUMULUS", "STRATUS", "OZONE", "NUMÉRIQUE ÉDUCATIF", "ESPACE MÉDIATION");
 		private var listeSalles:Array = new Array();
 		
 		public function EcranMC() {
@@ -27,9 +29,13 @@
 				push(salle2_mc);
 				push(salle3_mc);
 				push(salle4_mc);
+				push(salle5_mc);
+				push(salle6_mc);
 				
 			}
 			afficheSalles();
+			salle5_mc.visible=false;
+			salle6_mc.visible=false;
 			
 		}
 		private function afficheSalles():void {
@@ -62,6 +68,15 @@
 					//ozone
 					salleCible = salle4_mc;
 					break;
+				case 2:
+					//num. éduc.
+					salleCible = salle5_mc;
+					break;
+				case 1:
+					//esp. médiation
+					salleCible = salle6_mc;
+					break;
+				
 				default :
 					//on ne fait rien
 					salleCible = null;
@@ -69,6 +84,7 @@
 			}
 			if (salleCible) {
 				salleCible.afficheReservation(resa);
+				salleCible.visible = true;
 			}
 		}
 		public function effaceTout():void 
@@ -80,6 +96,8 @@
 				maSalle.effaceReservations();
 				trace ("données effacées pour salle : " + maSalle.name);
 			}
+			salle5_mc.visible=false;
+			salle6_mc.visible=false;
 		}
 		
 	}
