@@ -15,7 +15,7 @@
 	
 	public class ActualitesMC extends MovieClip
 	{
-		private var monLoader:XMLLoader = new XMLLoader("http://www.cddp92.ac-versailles.fr/aLaUne/listeImages.xml",{onComplete:xmlLoaded});
+		private var monLoader:XMLLoader = new XMLLoader("https://www.reseau-canope.fr/atelier-hauts-de-seine/aLaUne/listeImages.xml",{onComplete:xmlLoaded, onError:xmlError, onFail:xmlError});
 		private var queueImages:LoaderMax;
 		
 		private var timerImages:Timer;
@@ -38,10 +38,8 @@
 		private function xmlLoaded (event:LoaderEvent):void {
 			trace(monLoader.content.actualite.@image);
 			var newLiensImages:Array=new Array();
-			{
-				for each (var monXml:XML in monLoader.content.actualite) {
+			for each (var monXml:XML in monLoader.content.actualite) {
 					if (monXml.@image) { newLiensImages.push(String(monXml.@image)) }
-				}
 			}
 			trace(newLiensImages);
 			//vérifie que les images ne sont pas déjà là
@@ -71,6 +69,10 @@
 			timerImages.addEventListener(TimerEvent.TIMER,onTick);
 			timerImages.start();
 		}
+		private function xmlError (e:LoaderEvent):void {
+			//do nothing
+			
+		}		
 		private function setTimerXML():void {
 			// 5mn = 300 000 ms
 			timerXML = new Timer(300000);
