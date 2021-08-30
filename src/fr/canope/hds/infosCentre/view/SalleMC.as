@@ -34,7 +34,7 @@
 			monBloc.x = cible_mc.x;
 			monBloc.y = cible_mc.y + position_y;
 			this.addChild(monBloc);
-			position_y += 150;
+			position_y += 120;
 		}
 		
 		public function effaceReservations ():void {
