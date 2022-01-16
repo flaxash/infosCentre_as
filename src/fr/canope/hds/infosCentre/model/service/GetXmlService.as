@@ -15,8 +15,8 @@
 	{
 		private var loaderXml : URLLoader = new URLLoader();
 		//private var requeteUrl : URLRequest = new URLRequest("http://www.cd92.ac-versailles.fr/mrbs/web/xmlrequest+n.php")
-		private var requeteUrl : URLRequest = new URLRequest("http://www.reseau-canope.fr/atelier-hauts-de-seine/mrbs/web/reservations.xml")
-		//private var requeteUrl : URLRequest = new URLRequest("http://www.reseau-canope.fr/atelier-hauts-de-seine/mrbs/web/xmlrequest.php")
+		//private var requeteUrl : URLRequest = new URLRequest("http://www.reseau-canope.fr/atelier-hauts-de-seine/mrbs/web/reservations.xml")
+		private var requeteUrl : URLRequest = new URLRequest("http://www.reseau-canope.fr/atelier-hauts-de-seine/mrbs/web/xmlrequest.php")
 		private var xmlResult:XML;
 		public var signalXml:Signal = new Signal(XML);
 		

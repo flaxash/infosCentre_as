@@ -1,4 +1,4 @@
-package fr.canope.hds.infosCentre.view
+﻿package fr.canope.hds.infosCentre.view
 {
 	import com.greensock.TimelineMax;
 	import com.greensock.TweenLite;
@@ -20,7 +20,10 @@ package fr.canope.hds.infosCentre.view
 			this.addEventListener(Event.ADDED_TO_STAGE,onStageReady);
 		}
 		private function onStageReady(e:Event):void {
-			xmin = stage.stageWidth - photo_mc.width;
+			trace (stage.stageWidth);
+			trace (photo_mc.width);
+			trace (photo_mc.x);
+			xmin = stage.stageWidth - photo_mc.width + 100;
 			xmax = 0;
 			var tl:TimelineMax = new TimelineMax({repeat:-1});
 			tl.add(new TweenLite(photo_mc, 60, {x: xmin, ease:Linear.easeInOut}));

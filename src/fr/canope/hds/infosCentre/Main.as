@@ -22,7 +22,7 @@
 		private var resultArray: Array = new Array();
 
 		private var timerLoading: Timer;
-		private var intervalLoading: int = 300; //en s
+		private var intervalLoading: int = 30; //en s
 
 		private var reservationsGetter: GetReservationsService = new GetReservationsService();
 

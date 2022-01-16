@@ -19,7 +19,7 @@
 		public var actualites_mc:ActualitesMC;
 		public var message_mc:MessageMC;
 		
-		public var nomsSalles:Array = new Array("FORMATION 1", "FORMATION 2", "FORMATION 3", "OPEN SPACE");
+		public var nomsSalles:Array = new Array("SÉQUOIA", "EUCALYPTUS", "TILLEUL", "BAOBAB");
 		private var listeSalles:Array = new Array();
 		
 		public function EcranMC() {
